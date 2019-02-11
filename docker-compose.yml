@@ -28,5 +28,5 @@ services:
     environment:
       MONGODB_USER: "root"
       MONGODB_PASS: "password"
-      MONGODB_DBNAME: "esgi"
+      MONGODB_DBNAME: "SampleCollections"
     command: 'npm start'
