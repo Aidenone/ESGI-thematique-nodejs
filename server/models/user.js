@@ -7,7 +7,12 @@ const userSchema = new Schema({
     first_name: String,
     last_name: String,
 	created_at: Date,
-	updated_at: Date
+	updated_at: Date,
+	email: {
+		type: String, 
+		validate: /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/
+	},
+	password: String
 });
 
 userSchema.pre('save', function(next) {

@@ -1,10 +1,13 @@
 const express = require('express');
 const bakeryRouter = require('./routes/bakery');
 const app = express();
+const bodyparser = require('body-parser');
 
 app.get('/', function(req, res){
 	res.send("Hello World");
 });
+
+app.use(bodyparser.json());
 
 app.use('/bakery', bakeryRouter);
 
