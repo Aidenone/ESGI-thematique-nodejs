@@ -9,8 +9,8 @@ const bakerySchema = new Schema({
     address: {
         street: String,
         city: {
-        	type: String,
-        	required: true
+            type: String,
+            required: true
         },
         zip: Number
     },
