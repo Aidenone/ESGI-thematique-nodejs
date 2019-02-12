@@ -1,41 +1,34 @@
-const mongoose = require('mongoose');
+const express = require('express');
+const bakeryRouter = require('./routes/bakery');
+const app = express();
 
-mongoose.connect('mongodb://mongo' , {
-	user: process.env.MONGODB_USER,
-	pass: process.env.MONGODB_PASS,
-	dbName: process.env.MONGODB_DBNAME,
-	useNewUrlParser: true
+app.get('/', function(req, res){
+	res.send("Hello World");
 });
 
-const db = mongoose.connection;
+app.use('/bakery', bakeryRouter);
 
-db.on('error', function () {console.log(arguments)});
-db.on('open', function () {
-    const Schema = mongoose.Schema;
+app.listen(3000, () => console.log("Listening on port 3000"));
 
-    const movieDetailsSchema = new Schema({
-        title: String,
-        year: {type: Number, min:1850},
-        released: Date
-    });
 
-    const Movie = mongoose.model('Movie', movieDetailsSchema);
 
-    const movie1 = new Movie();
-    movie1.title = "Test Movie";
-    movie1.year = 1930;
-    movie1.released = Date.now();
 
-    movie1.save(function(error, result){
-        console.log("save");
-        console.log(result);
-        console.log(error);
-    });
+// const Movie = require('./models/movie');
+// const Bakery = require('./models/bakery');
+// const User = require('./models/user');
 
-    const fecthMovies = Movie.find({title: "Wild Wild West"}, function(error, result) {
-        console.log("find");
-        console.log(result);
-        console.log(error);
-    });
-    
-});
+// const user1 = new User();
+// user1.first_name = "Patrick";
+// user1.last_name = "Timsit";
+
+// user1.save(function(error, result){
+//     console.log("save");
+//     console.log(result);
+//     console.log(error);
+// });
+
+// const fecthUser = User.find({first_name: "Patrick"}, function(error, result) {
+//     console.log("find");
+//     console.log(result);
+//     console.log(error);
+// });
