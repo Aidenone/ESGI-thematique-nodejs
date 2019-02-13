@@ -1,15 +1,24 @@
 const express = require('express');
 const bakeryRouter = require('./routes/bakery');
+const securityRouter = require('./routes/security');
+const userRouter = require('./routes/user');
 const app = express();
+// const session = require('express-session');
 const bodyparser = require('body-parser');
+const security = require('./middleware/security.js');
 
-app.get('/', function(req, res){
-	res.send("Hello World");
-});
+// app.use(session({
+// 	secret: 'keyboard cat',
+//   	resave: false,
+//   	saveUninitialized: true,
+//   	cookie: {},
+// }));
 
 app.use(bodyparser.json());
-
+app.use(security.verifyToken);
+app.use('/', securityRouter);
 app.use('/bakery', bakeryRouter);
+app.use('/user', userRouter);
 
 app.listen(3000, () => console.log("Listening on port 3000"));
 
