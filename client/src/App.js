@@ -24,16 +24,15 @@ class App extends Component {
           <p>
             Welcome to <code>Node Bakery</code>.
           </p>
-          
                    
-            <Link to="/security/login">Login</Link>
-            <Link to="/bakery">Bakery List</Link>
-            <Switch>
-              <Route path="/bakery" component={BakeryContainer}/>              
-              <Route path="/security" component={SecurityContainer}/>
-              <Route path="/" component={SecurityContainer}/>              
-              </Switch>
-          
+          <Link to="/security/login">Login</Link>
+          <Link to="/bakery">Bakery List</Link>
+
+          <Switch>
+            <Route path="/bakery" component={BakeryContainer}/>              
+            <Route path="/security" component={SecurityContainer}/>
+            <Route path="/" component={SecurityContainer}/>              
+          </Switch>
           
         </header>
       </div>
