@@ -1,24 +1,27 @@
 const express = require('express');
+const bodyparser = require('body-parser');
+const bakeryRouter = require('./routes/bakery');
+const securityRouter = require('./routes/security');
+const userRouter = require('./routes/user');
+const security = require('./middleware/security');
+const app = express();
+const cors = require('cors');
 
-/*const Movie = require('./models/movie');
+// app.use(session({
+// 	secret: 'keyboard cat',
+//   	resave: false,
+//   	saveUninitialized: true,
+//   	cookie: {},
+// }));
 
-    const movie1 = new Movie();
-    movie1.title = "Black Panther";
-    movie1.year = 2018;
-    movie1.released = Date.now();
+app.use(bodyparser.json());
+app.use(security.verifyToken);
+app.use('/', securityRouter);
+app.use('/bakery', bakeryRouter);
+app.use('/user', userRouter);
+app.use(cors());
 
-
-    movie1.save(function(error, result){
-        console.log("Save movie Succes");
-        console.log(result);
-        console.log(error);
-    });
-
-    const fecthMovies = Movie.find({title: "Coach Carter"}, function(error, result) {
-        console.log("find");
-        console.log(result);
-        console.log(error);
-    });*/
+app.listen(3000, () => console.log("nodeBakery listening on port 3000"));
 
 const movieRouter = require('./routes/movie');
 const securityRouter = require('./routes/security');

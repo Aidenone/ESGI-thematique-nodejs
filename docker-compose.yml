@@ -28,8 +28,13 @@ services:
     environment:
       MONGODB_USER: "root"
       MONGODB_PASS: "password"
+<<<<<<< HEAD
       MONGODB_DBNAME: "SampleCollections"
       JWT_SECRET: 'MyBestSecret'
+=======
+      MONGODB_DBNAME: "esgi"
+      JWT_SECRET: "MaBelleJonquille"
+>>>>>>> master
     command: 'npm start'
     ports:
       - 127.0.0.1:3000:3000
@@ -40,7 +45,10 @@ services:
       - './client:/home/node/app'
     working_dir: '/home/node/app'
     command: 'yarn start'
+<<<<<<< HEAD
     environment:
       CHOKIDAR_USEPOLLING: 'true'
+=======
+>>>>>>> master
     ports:
       - 127.0.0.1:3001:3000
