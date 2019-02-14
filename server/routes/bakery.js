@@ -3,9 +3,10 @@ const Bakery = require('../models/bakery');
 
 const router = express.Router();
 
-// research
+// research with get params
 router.get('/', function(req, res){
-	res.send(req.params);
+	Bakery.find(req.query).then(data => res.send(data))
+	.catch(data => rend.sendStatus(400));
 });
 
 // get by name

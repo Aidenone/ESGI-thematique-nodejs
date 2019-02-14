@@ -2,7 +2,6 @@ const express = require('express');
 const createToken = require('../libs/auth').createToken;
 const User = require('../models/user');
 const router = express.Router();
-const app = express();
 
 //verif username/password(hashé) avec la base
 

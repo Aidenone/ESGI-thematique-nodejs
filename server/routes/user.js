@@ -3,9 +3,10 @@ const User = require('../models/user');
 
 const router = express.Router();
 
-// research
+// research with get params
 router.get('/', function(req, res){
-	res.send(req.params);
+	User.find(req.query).then(data => res.send(data))
+	.catch(data => rend.sendStatus(400));
 });
 
 // subscribe user
