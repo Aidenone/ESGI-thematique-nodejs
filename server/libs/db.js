@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 	useNewUrlParser: true
 });*/
 
-mongoose.connect("mongodb://localhost:27017/SampleCollections",{useNewUrlParser:true});
+mongoose.connect("mongodb://localhost:27017/esgi",{useNewUrlParser:true});
 
 
 const db = mongoose.connection;

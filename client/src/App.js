@@ -19,7 +19,7 @@ class App extends Component {
     <BrowserRouter>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" style={styles} />
+               <img src={logo} className="App-logo" alt="logo" style={styles} />
           <ProfileBanner/>
           <p>
             Welcome to <code>Node Bakery</code>.
@@ -27,7 +27,7 @@ class App extends Component {
                    
           <Link to="/security/login">Login</Link>
           <Link to="/bakery">Bakery List</Link>
-
+        
           <Switch>
             <Route path="/bakery" component={BakeryContainer}/>              
             <Route path="/security" component={SecurityContainer}/>
