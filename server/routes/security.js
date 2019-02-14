@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.post('/login_check', (req, res) => {
     console.log(req.body.username, req.body.password);
-    const fetchUser = User.findOne({user_name: "admin"}, function(error, result) {
+    const fetchUser = User.findOne({user_name: req.body.username}, function(error, result) {
 	    const user = result;
-	    if(user._id) {
+	    if(user) {
 	        const token = createToken({
 	            username: req.body.username
 	        });
@@ -19,7 +19,7 @@ router.post('/login_check', (req, res) => {
 	            token
 	        });
 	    } else {
-	        res.sendStatus(400).send({
+	        res.status(400).send({
 	            error: "Invalid username/password"
 	        });
 	    }
