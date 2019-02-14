@@ -1,34 +1,36 @@
 const express = require('express');
-const bakeryRouter = require('./routes/bakery');
+
+/*const Movie = require('./models/movie');
+
+    const movie1 = new Movie();
+    movie1.title = "Black Panther";
+    movie1.year = 2018;
+    movie1.released = Date.now();
+
+
+    movie1.save(function(error, result){
+        console.log("Save movie Succes");
+        console.log(result);
+        console.log(error);
+    });
+
+    const fecthMovies = Movie.find({title: "Coach Carter"}, function(error, result) {
+        console.log("find");
+        console.log(result);
+        console.log(error);
+    });*/
+
+const movieRouter = require('./routes/movie');
+const securityRouter = require('./routes/security');
+const bodyparser = require('body-parser');
+const security = require('./middlewares/security');
 const app = express();
+const cors = require('cors');
 
-app.get('/', function(req, res){
-	res.send("Hello World");
-});
+app.use(cors());
+app.use(security.verifyToken);
+app.use(bodyparser.json())
+app.use('/', securityRouter);
+app.use('/movies', movieRouter);
 
-app.use('/bakery', bakeryRouter);
-
-app.listen(3000, () => console.log("Listening on port 3000"));
-
-
-
-
-// const Movie = require('./models/movie');
-// const Bakery = require('./models/bakery');
-// const User = require('./models/user');
-
-// const user1 = new User();
-// user1.first_name = "Patrick";
-// user1.last_name = "Timsit";
-
-// user1.save(function(error, result){
-//     console.log("save");
-//     console.log(result);
-//     console.log(error);
-// });
-
-// const fecthUser = User.find({first_name: "Patrick"}, function(error, result) {
-//     console.log("find");
-//     console.log(result);
-//     console.log(error);
-// });
+app.listen(3000, ()=> console.log('Listening on port 3000'));
