@@ -28,4 +28,10 @@ router.post('/', function(req, res) {
 	});
 });
 
+// update bakery
+router.post('/:id ', function(req, res) {
+	Bakery.update({_id: req.params.id}, req.body).then(data => res.send(data))
+	.catch(data => rend.sendStatus(400));
+});
+
 module.exports = router;

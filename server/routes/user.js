@@ -22,4 +22,10 @@ router.post('/', function(req, res) {
 	});
 });
 
+// update bakery
+router.put('/:user_id', function(req, res) {
+	User.update({_id: req.params.user_id}, req.body).then(data => res.status(201).send(data))
+	.catch(data => rend.sendStatus(400));
+});
+
 module.exports = router;
