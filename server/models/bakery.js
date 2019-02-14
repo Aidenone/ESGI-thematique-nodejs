@@ -19,7 +19,12 @@ const bakerySchema = new Schema({
     	bio: {type: Boolean, default: false},
     	homemade: {type: Boolean, default: false},
     },
-    photo: String
+    photo: String,
+    reviews: {
+    	id_user: String,
+    	rate: Number,
+    	comment: String
+    }
 });
 
 module.exports = db.model('Bakery', bakerySchema);
