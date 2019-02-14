@@ -23,22 +23,17 @@ app.use(cors());
 
 app.listen(3000, () => console.log("nodeBakery listening on port 3000"));
 
-// const Movie = require('./models/movie');
-// const Bakery = require('./models/bakery');
-// const User = require('./models/user');
+const movieRouter = require('./routes/movie');
+const securityRouter = require('./routes/security');
+const bodyparser = require('body-parser');
+const security = require('./middlewares/security');
+const app = express();
+const cors = require('cors');
 
-// const user1 = new User();
-// user1.first_name = "Patrick";
-// user1.last_name = "Timsit";
+app.use(cors());
+app.use(security.verifyToken);
+app.use(bodyparser.json())
+app.use('/', securityRouter);
+app.use('/movies', movieRouter);
 
-// user1.save(function(error, result){
-//     console.log("save");
-//     console.log(result);
-//     console.log(error);
-// });
-
-// const fecthUser = User.find({first_name: "Patrick"}, function(error, result) {
-//     console.log("find");
-//     console.log(result);
-//     console.log(error);
-// });
+app.listen(3000, ()=> console.log('Listening on port 3000'));
