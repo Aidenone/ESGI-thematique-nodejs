@@ -14,12 +14,12 @@ const cors = require('cors');
 //   	cookie: {},
 // }));
 
+app.use(cors());
 app.use(bodyparser.json());
 app.use(security.verifyToken);
 app.use('/', securityRouter);
 app.use('/bakery', bakeryRouter);
 app.use('/user', userRouter);
-app.use(cors());
 
 app.listen(3000, () => console.log("nodeBakery listening on port 3000"));
 
