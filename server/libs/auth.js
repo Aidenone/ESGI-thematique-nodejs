@@ -6,14 +6,15 @@ const createToken = function (user = {}) {
 			firstName: user.first_name,
 			userName: user.last_name
 		}
-	}, process.env.JWT_SECRET, {
+	},'test', {
+
 		expiresIn: 3600,
 		algorithm: "HS256"
 	});
 };
 
 const verifyToken =  function (token) {
-	return new Promise((resolve, reject) => jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+	return new Promise((resolve, reject) => jwt.verify(token, 'test', (err, decodedToken) => {
 		if(err || !decodedToken) {
 			reject(err);
 		}

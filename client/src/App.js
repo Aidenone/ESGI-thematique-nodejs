@@ -5,6 +5,7 @@ import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import SecurityContainer from './container/SecurityContainer';
 import BakeryContainer from './container/BakeryContainer';
 import ProfileBanner from "./container/ProfilBanner";
+import HomeButton from "./components/HomeButton";
 
 class App extends Component {
 
@@ -21,13 +22,10 @@ class App extends Component {
         <header className="App-header">
                <img src={logo} className="App-logo" alt="logo" style={styles} />
           <ProfileBanner/>
-          <p>
-            Welcome to <code>Node Bakery</code>.
-          </p>
+         
                    
-          <Link to="/security/login">Login</Link>
-          <Link to="/bakery">Bakery List</Link>
-        
+          
+        <HomeButton />
           <Switch>
             <Route path="/bakery" component={BakeryContainer}/>              
             <Route path="/security" component={SecurityContainer}/>
