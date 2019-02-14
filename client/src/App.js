@@ -4,6 +4,7 @@ import './App.css';
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import SecurityContainer from './container/SecurityContainer';
 import BakeryContainer from './container/BakeryContainer';
+import ProfileBanner from "./container/ProfilBanner";
 
 class App extends Component {
 
@@ -12,14 +13,14 @@ class App extends Component {
       maxHeight:50,   
       maxWidth: "100%"   
     }
-
-    
+  
 
     return (
     <BrowserRouter>
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" style={styles} />
+          <ProfileBanner/>
           <p>
             Welcome to <code>Node Bakery</code>.
           </p>

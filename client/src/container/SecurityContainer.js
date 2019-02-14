@@ -1,22 +1,16 @@
 import React from 'react';
 import{Switch, Route} from 'react-router-dom';
 import LoginForm from './LoginForm';
+import { connect } from 'react-redux';
+import { login } from '../redux/actions/security';
 
-export default class SecurityContainer extends React.Component{
+class SecurityContainer extends React.Component{
 
     handleSubmit = (data) => {
         console.log(data);
-        const myheaders = new Headers({"Content-Type" : "application/json"});
-        fetch('http://localhost:3000/login_check',
-            {
-                method:'POST',
-                headers: myheaders,
-                mode : "cors",
-                body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => localStorage.setItem('token',data.token));
-    }
+        //this.props.dispatch(data.username,data.password,this.props.dispatch);
+        this.props.login(data.username,data.password);
+        }
      
     render(){
         return(
@@ -26,3 +20,13 @@ export default class SecurityContainer extends React.Component{
         );
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        login: (username, password) => dispatch(login(username, password, dispatch))
+    }
+}
+
+
+
+export default connect(undefined, mapDispatchToProps)(SecurityContainer);
